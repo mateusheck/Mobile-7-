@@ -1,18 +1,16 @@
-import { SectionList, Text, StyleSheet, View, StatusBar } from 'react-native'; 
+import { SectionList, Text, StyleSheet, View, } from 'react-native'; 
+
 
 export default function SectionListScreen() {
   const sections = [ 
-    { title: 'Seção 1', data: ['Item 1', 'Item 2', 'Item 3', 'Item 4'] }, 
-    { title: 'Seção 2', data: ['Item 5', 'Item 6', 'Item 7'] }, 
-    { title: 'Seção 3', data: ['Item 8', 'Item 9'] }, 
-  ];
-
-  return ( 
-    <View style={styles.screen}>
-      <StatusBar barStyle="light-content" />
-
-      <Text style={styles.title}>Seções</Text>
-
+  { title: 'Seção 1', data: [' Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 4', 'Item 6'] }, 
+  { title: 'Seção 2', data: [' Item 7', 'Item 8', 'Item 9', 'Item 10', 'Item 11'] }, 
+  { title: 'Seção 3', data: [' Item 12', 'Item 13', 'Item 14', 'Item 15'] }, 
+  { title: 'Seção 4', data: [' Item 12', 'Item 13', 'Item 14', 'Item 15'] }, 
+  { title: 'Seção 5', data: [' Item 12', 'Item 13', 'Item 14', 'Item 15'] }, 
+];
+   return ( 
+    <View style={styles.container}> 
       <SectionList 
         sections={sections} 
         keyExtractor={(item, index) => item + index} 
@@ -24,52 +22,36 @@ export default function SectionListScreen() {
         renderSectionHeader={({ section }) => ( 
           <Text style={styles.header}>{section.title}</Text> 
         )} 
-        contentContainerStyle={styles.container} 
-        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.list} 
       /> 
-    </View>
+    </View> 
   ); 
 } 
-
+ 
+ 
 const styles = StyleSheet.create({ 
-  screen: {
-    flex: 1,
-    backgroundColor: '#0f172a',
-  },
-
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 50,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-
   container: { 
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    flex: 1,
+    marginTop: 20, 
   }, 
-
+  list: { 
+    padding: 20, 
+    marginTop: 20, 
+  }, 
   header: { 
     fontSize: 18, 
-    fontWeight: 'bold',
-    color: '#38bdf8',
-    marginBottom: 8,
-    marginTop: 10,
+    fontWeight: 'bold', 
+    backgroundColor: '#d0d0d0', 
+    padding: 10, 
+    borderRadius: 8, 
   }, 
-
   item: { 
-    marginBottom: 12, 
-    padding: 18, 
-    backgroundColor: '#1e293b', 
-    borderRadius: 12,
-    elevation: 5,
+    marginBottom: 10, 
+    padding: 15, 
+    backgroundColor: '#f9fbe7', 
+    borderRadius: 8, 
   }, 
-
   text: { 
-    fontSize: 16,
-    color: '#e2e8f0',
-    fontWeight: '600',
+    fontSize: 16, 
   }, 
 });

@@ -20,7 +20,6 @@ export default function LoginScreen({ navigation }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
-      // ✅ CORRETO
       navigation.replace('Home');
 
     } catch (error) {

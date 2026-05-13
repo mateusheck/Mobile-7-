@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastrar Produto</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <!-- conteúdo principal -->
+    <main class="main-content">
+
+        <h1>Cadastrar Produto</h1>
+
+        <form th:action="@{/produtos/cadastrar}" th:object="${produto}" method="post">
+
+            <div>
+                <label>Nome:</label>
+
+                <input type="text"
+                       th:field="*{nome}"
+                       placeholder="Nome do produto" />
+
+                <div th:if="${#fields.hasErrors('nome')}"
+                     th:errors="*{nome}">
+                </div>
+            </div>
+
+            <div>
+                <label>Quantidade:</label>
+
+                <input type="number"
+                       th:field="*{quantidade}" />
+
+                <div th:if="${#fields.hasErrors('quantidade')}"
+                     th:errors="*{quantidade}">
+                </div>
+            </div>
+
+            <div>
+                <label>Valor:</label>
+
+                <input type="number"
+                       step="0.01"
+                       th:field="*{valor}"
+                       placeholder="0.00" />
+
+                <div th:if="${#fields.hasErrors('valor')}"
+                     th:errors="*{valor}">
+                </div>
+            </div>
+
+            <button type="submit" class="botao">
+                Salvar
+            </button>
+
+        </form>
+
+    </main>
+
+    <!-- footer opcional -->
+    <footer>
+        <p>(c) 2025 Meu App</p>
+    </footer>
+
+</body>
+
+</html>

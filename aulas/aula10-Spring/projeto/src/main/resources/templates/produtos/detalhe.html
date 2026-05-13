@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Produto</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <main class="main-content">
+        <h1>Detalhes do Produto</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td th:text="${produto.id}"></td>
+                    <td th:text="${produto.nome}"></td>
+                    <td th:text="${produto.quantidade}"></td>
+                    <td th:text="${produto.valor}"></td>
+
+                    <td>
+                        <form th:action="@{/produtos/{id}/excluir(id=${produto.id})}" method="post">
+                            <button type="submit" class="botao">
+                                Excluir
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>(c) 2025 Meu App</p>
+    </footer>
+
+</body>
+
+</html>
+

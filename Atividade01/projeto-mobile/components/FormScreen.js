@@ -11,6 +11,8 @@ import {
 import { db } from '../config/FirebaseConfig';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
+import { getAuth, signOut } from 'firebase/auth';
+
 export default function FormScreen({ navigation }) {
   const [nomeCarro, setNomeCarro] = useState('');
   const [nomeCliente, setNomeCliente] = useState('');
@@ -31,8 +33,8 @@ export default function FormScreen({ navigation }) {
       await addDoc(collection(db, 'carros'), {
         nomeCarro,
         nomeCliente,
-        valorAluguel: Number(valorAluguel), 
-        dataAluguel: Timestamp.fromDate(new Date(dataAluguel)), 
+        valorAluguel: Number(valorAluguel),
+        dataAluguel: Timestamp.fromDate(new Date(dataAluguel)),
         createdAt: Timestamp.now()
       });
 
@@ -47,6 +49,18 @@ export default function FormScreen({ navigation }) {
     } catch (error) {
       console.log(error);
       setModalMessage('Erro: ' + error.message);
+      setModalVisible(true);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth();
+      await signOut(auth);
+
+      navigation.replace('Login'); 
+    } catch (error) {
+      setModalMessage('Erro ao sair: ' + error.message);
       setModalVisible(true);
     }
   };
@@ -86,6 +100,13 @@ export default function FormScreen({ navigation }) {
 
       <TouchableOpacity style={styles.button} onPress={handleSave}>
         <Text style={styles.buttonText}>Salvar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: 'red', marginTop: 10 }]}
+        onPress={handleLogout}
+      >
+        <Text style={styles.buttonText}>Sair</Text>
       </TouchableOpacity>
 
       <Modal visible={modalVisible} transparent animationType="fade">

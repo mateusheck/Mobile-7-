@@ -1,0 +1,10 @@
+Aula docker:
+
+docker rm - Remove o docker
+docker stop - Para o docker
+docker ps - Ver se o dock está ativo
+docker-compose up -d - subir o docker
+cd projeto
+chmod +x mvnw - Habilitar o mvnw
+./mvnw spring-boot:run - Rodar o banco
+docker exec -it postgres_spring3 psql -U root -d bd_spring -Entrar no BD

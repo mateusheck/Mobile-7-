@@ -7,5 +7,6 @@ export default function HomeScreen() {
       <Text>Bem-Vindo ao aplicativo. </Text>
       <Text>Utilize o menu de navegação para acessar as telas de modais, as listas com rolagem, cadastros de aluguel de carro e listas de aluguel de carros.</Text>
     </View>
+  
   );
 }

@@ -16,7 +16,6 @@ export default function RegisterScreen({ navigation }) {
 
   const handleRegister = async () => {
     try {
-      // 🔥 proteção contra erro do Firebase
       if (!auth || !db) {
         throw new Error("Firebase não carregou");
       }
@@ -30,11 +29,9 @@ export default function RegisterScreen({ navigation }) {
 
       let userCreated = null;
 
-      // 1. Criar usuário
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       userCreated = userCredential.user;
 
-      // 2. Salvar no Firestore
       await setDoc(doc(db, 'users', userCreated.uid), {
         name,
         email,
@@ -42,13 +39,12 @@ export default function RegisterScreen({ navigation }) {
         createdAt: new Date().toISOString()
       });
 
-      // sucesso
       setModalMessage('Cadastro realizado com sucesso');
       setIsSuccess(true);
       setModalVisible(true);
 
     } catch (error) {
-      console.log(error); // 👈 mostra erro real
+      console.log(error); 
 
       setIsSuccess(false);
 
